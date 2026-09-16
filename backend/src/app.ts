@@ -10,11 +10,19 @@ const app: Application = express();
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, postman) or matching client
-      if (!origin || origin === ENV.CLIENT_URL || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      // Allow requests with no origin (mobile apps, curl, postman) or matching client/cloud domains
+      if (
+        !origin ||
+        origin === ENV.CLIENT_URL ||
+        origin.includes('localhost') ||
+        origin.includes('127.0.0.1') ||
+        origin.endsWith('.vercel.app') ||
+        origin.endsWith('.onrender.com') ||
+        origin.endsWith('.netlify.app')
+      ) {
         callback(null, true);
       } else {
-        callback(null, true); // Permissive in development
+        callback(null, true); // Permissive for preview deployments
       }
     },
     credentials: true,
