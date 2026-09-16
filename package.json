@@ -2,6 +2,10 @@
   "name": "careergraph-monorepo",
   "version": "1.0.0",
   "description": "CareerGraph - Full-Stack Placement & Skill Management Platform",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
     "dev:backend": "cd backend && npm run dev",
