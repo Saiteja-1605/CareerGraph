@@ -1,8 +1,14 @@
 import axios from 'axios';
 
 const getBaseUrl = (): string => {
-  const envUrl = (import.meta.env.VITE_API_URL || '').trim();
+  let envUrl = (import.meta.env.VITE_API_URL || '').trim();
   if (!envUrl || envUrl === '/api') return '/api';
+
+  // If a host was provided without protocol (e.g. careergraph-backend.onrender.com)
+  if (!envUrl.startsWith('http://') && !envUrl.startsWith('https://') && !envUrl.startsWith('/')) {
+    envUrl = `https://${envUrl}`;
+  }
+
   const clean = envUrl.replace(/\/+$/, '');
   return clean.endsWith('/api') ? clean : `${clean}/api`;
 };

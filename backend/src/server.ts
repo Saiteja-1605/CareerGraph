@@ -23,8 +23,13 @@ const startServer = async () => {
     app.listen(port, '0.0.0.0', () => {
       console.log('====================================================');
       console.log(`  CareerGraph REST API running in ${ENV.NODE_ENV} mode`);
-      console.log(`  Server URL: http://localhost:${port}`);
-      console.log(`  Health API: http://localhost:${port}/api/health`);
+      if (ENV.NODE_ENV === 'production') {
+        console.log(`  Listening on: 0.0.0.0:${port}`);
+        console.log(`  Health API: /api/health`);
+      } else {
+        console.log(`  Server URL: http://localhost:${port}`);
+        console.log(`  Health API: http://localhost:${port}/api/health`);
+      }
       console.log('====================================================');
     });
   } catch (err: any) {
