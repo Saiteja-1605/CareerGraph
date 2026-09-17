@@ -26,8 +26,10 @@ export const connectDB = async (): Promise<void> => {
     // In development or demo mode, fallback to in-memory MongoDB
     if (ENV.NODE_ENV !== 'production') {
       try {
-        console.log('[Database] Initializing in-memory MongoDB fallback (mongodb-memory-server)...');
-        const { MongoMemoryServer } = await import('mongodb-memory-server');
+        console.log('[Database] Initializing in-memory MongoDB fallback...');
+        // Use dynamic variable require so TypeScript does not treat this as a static compile-time dependency in production
+        const memPackage = 'mongodb-memory-server';
+        const { MongoMemoryServer } = require(memPackage);
         mongodInstance = await MongoMemoryServer.create();
         const memoryUri = mongodInstance.getUri();
         await mongoose.connect(memoryUri);
@@ -35,8 +37,8 @@ export const connectDB = async (): Promise<void> => {
         console.log(`[Database] Connected to In-Memory MongoDB at: ${memoryUri}`);
         console.log('[Database] Ready for local development and offline portfolio testing!');
       } catch (memErr: any) {
-        console.error('[Database] Failed to initialize in-memory MongoDB:', memErr.message);
-        throw memErr;
+        console.warn('[Database] In-memory MongoDB is not available. Please ensure MongoDB is running or configure MONGO_URI.');
+        throw primaryErr;
       }
     } else {
       console.error('[Database] Production connection failed. Please ensure MONGO_URI is correctly configured in your deployment environment variables.');
