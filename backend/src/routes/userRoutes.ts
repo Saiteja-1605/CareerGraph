@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/profile', protect, getProfile);
 router.put('/profile', protect, updateProfile);
-router.get('/readiness', protect, authorize('student'), getReadinessScore);
-router.get('/dashboard', protect, authorize('student'), getStudentDashboardData);
+router.get('/readiness', protect, authorize('student', 'alumni'), getReadinessScore);
+router.get('/dashboard', protect, authorize('student', 'alumni'), getStudentDashboardData);
 
 export default router;

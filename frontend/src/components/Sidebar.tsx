@@ -50,9 +50,68 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
     { name: 'Manage Applications', path: '/admin/applications', icon: FileCheck2 },
     { name: 'Skills Catalog', path: '/admin/skills', icon: Wrench },
     { name: 'Placement Analytics', path: '/admin/analytics', icon: BarChart3 },
+    { name: 'Placement Drives', path: '/opportunities', icon: Briefcase },
+    { name: 'Settings', path: '/settings', icon: Settings },
   ];
 
-  const links = user?.role === 'admin' ? adminLinks : studentLinks;
+  const lecturerLinks = [
+    { name: 'Faculty Dashboard', path: '/admin', icon: LayoutDashboard },
+    { name: 'Student Directory', path: '/admin/students', icon: Users },
+    { name: 'Placement Analytics', path: '/admin/analytics', icon: BarChart3 },
+    { name: 'Skills Catalog', path: '/admin/skills', icon: Wrench },
+    { name: 'Placement Drives', path: '/opportunities', icon: Briefcase },
+    { name: 'Settings', path: '/settings', icon: Settings },
+  ];
+
+  const industryLinks = [
+    { name: 'Placement Drives', path: '/opportunities', icon: Briefcase },
+    { name: 'Manage Opportunities', path: '/admin/opportunities', icon: Building2 },
+    { name: 'Candidate Applications', path: '/admin/applications', icon: FileCheck2 },
+    { name: 'Student Talent Pool', path: '/admin/students', icon: Users },
+    { name: 'Settings', path: '/settings', icon: Settings },
+  ];
+
+  const alumniLinks = [
+    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { name: 'Profile', path: '/profile', icon: User },
+    { name: 'DSA Tracker', path: '/dsa', icon: Code2 },
+    { name: 'Interview Prep', path: '/interview-prep', icon: BookOpenCheck },
+    { name: 'Placement Drives', path: '/opportunities', icon: Briefcase },
+    { name: 'Student Directory', path: '/admin/students', icon: Users },
+    { name: 'Settings', path: '/settings', icon: Settings },
+  ];
+
+  const getLinks = () => {
+    switch (user?.role) {
+      case 'admin':
+        return adminLinks;
+      case 'lecturer':
+        return lecturerLinks;
+      case 'industry':
+        return industryLinks;
+      case 'alumni':
+        return alumniLinks;
+      default:
+        return studentLinks;
+    }
+  };
+
+  const links = getLinks();
+
+  const getPortalTitle = () => {
+    switch (user?.role) {
+      case 'admin':
+        return 'Admin Portal';
+      case 'lecturer':
+        return 'Faculty Portal';
+      case 'industry':
+        return 'Recruiter Portal';
+      case 'alumni':
+        return 'Alumni Portal';
+      default:
+        return 'Student Portal';
+    }
+  };
 
   const sidebarContent = (
     <div className="flex flex-col h-full bg-slate-900 text-white w-64 border-r border-slate-800">
@@ -65,7 +124,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
           <div>
             <span className="text-base font-extrabold tracking-tight text-white">CareerGraph</span>
             <span className="block text-[10px] font-semibold text-indigo-400 uppercase tracking-wider">
-              {user?.role === 'admin' ? 'Admin Portal' : 'Student Portal'}
+              {getPortalTitle()}
             </span>
           </div>
         </NavLink>

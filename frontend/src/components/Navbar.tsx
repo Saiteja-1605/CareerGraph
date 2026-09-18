@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Bell, ExternalLink, ShieldCheck, GraduationCap } from 'lucide-react';
+import { Menu, ExternalLink, ShieldCheck, GraduationCap, Briefcase, BookOpen, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -40,6 +40,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuClick, title }) => {
                 <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
                 <span>Admin</span>
               </>
+            ) : user?.role === 'lecturer' ? (
+              <>
+                <BookOpen className="w-3.5 h-3.5 text-purple-600" />
+                <span>Lecturer</span>
+              </>
+            ) : user?.role === 'industry' ? (
+              <>
+                <Briefcase className="w-3.5 h-3.5 text-blue-600" />
+                <span>Industry</span>
+              </>
+            ) : user?.role === 'alumni' ? (
+              <>
+                <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+                <span>Alumni</span>
+              </>
             ) : (
               <>
                 <GraduationCap className="w-3.5 h-3.5 text-emerald-600" />
@@ -50,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuClick, title }) => {
 
           {/* Avatar / Profile Quick Link */}
           <Link
-            to={user?.role === 'admin' ? '/admin' : '/profile'}
+            to={user?.role === 'admin' || user?.role === 'lecturer' ? '/admin' : '/profile'}
             className="flex items-center gap-2 p-1 rounded-lg hover:bg-slate-50 transition-colors"
           >
             <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">

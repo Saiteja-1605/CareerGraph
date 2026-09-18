@@ -6,9 +6,14 @@ import { UserRole } from '../types';
 interface ProtectedRouteProps {
   children: React.ReactNode;
   allowedRole?: UserRole;
+  allowedRoles?: UserRole[];
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRole }) => {
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  children,
+  allowedRole,
+  allowedRoles,
+}) => {
   const { user, isAuthenticated, isLoading } = useAuth();
   const location = useLocation();
 
@@ -27,9 +32,18 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
+  const getDefaultRoute = (role: UserRole) => {
+    if (role === 'admin' || role === 'lecturer') return '/admin';
+    if (role === 'industry') return '/admin/opportunities';
+    return '/dashboard';
+  };
+
   if (allowedRole && user.role !== allowedRole) {
-    // If student tries to visit admin or vice versa, redirect appropriately
-    return <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} replace />;
+    return <Navigate to={getDefaultRoute(user.role)} replace />;
+  }
+
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to={getDefaultRoute(user.role)} replace />;
   }
 
   return <>{children}</>;

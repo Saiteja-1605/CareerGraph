@@ -282,14 +282,61 @@ export const runSeed = async (silent = false): Promise<void> => {
     notes: 'First application submitted on campus portal.',
   });
 
+  // 9. Create Lecturer Account: Dr. Ananya Iyer (Department Faculty & Career Mentor)
+  const lecturer = await User.create({
+    name: 'Dr. Ananya Iyer',
+    email: 'faculty@college.edu',
+    password: 'Faculty@123456',
+    role: 'lecturer',
+    phone: '+91 98444 55667',
+    college: 'National Institute of Technology (NIT)',
+    degree: 'Department of Computer Science & Engineering',
+    graduationYear: 2012,
+    bio: 'Associate Professor & Academic Career Mentor. Overseeing student technical tracks and curriculum alignment with hiring standards.',
+  });
+  log(` Created Lecturer: ${lecturer.email}`);
+
+  // 10. Create Industry Recruiter Account: Vikram Malhotra (Campus Recruiter)
+  const recruiter = await User.create({
+    name: 'Vikram Malhotra',
+    email: 'recruiter@techcorp.com',
+    password: 'Industry@123456',
+    role: 'industry',
+    phone: '+91 98555 66778',
+    college: 'Nexus Infotech Hiring Division',
+    degree: 'Talent Acquisition & University Relations',
+    graduationYear: 2016,
+    bio: 'Lead Campus Recruiter for Nexus Infotech & FinEdge Systems. Hiring top engineering talent for SDE and cloud infrastructure roles.',
+  });
+  log(` Created Industry Recruiter: ${recruiter.email}`);
+
+  // 11. Create Alumni Account: Sneha Rao (Alumni Mentor & SDE-2 at Microsoft)
+  const alumni = await User.create({
+    name: 'Sneha Rao',
+    email: 'alumni@college.edu',
+    password: 'Alumni@123456',
+    role: 'alumni',
+    phone: '+91 98666 77889',
+    college: 'National Institute of Technology (NIT)',
+    degree: 'B.Tech in Computer Science (Batch of 2024)',
+    graduationYear: 2024,
+    bio: 'Software Engineer at Microsoft, CareerGraph Mentor. Helping juniors crack DSA rounds, system design, and mock interviews.',
+    githubUrl: 'https://github.com/sneha-rao-alumni',
+    linkedinUrl: 'https://linkedin.com/in/sneha-rao-alumni',
+  });
+  log(` Created Alumni Mentor: ${alumni.email}`);
+
   log(' Seeded realistic application histories with varied statuses.');
   log('==================================================');
   log('   SEEDING COMPLETE - DEMO CREDENTIALS:           ');
   log('==================================================');
-  log(' [ADMIN]   admin@careergraph.dev       | Admin@123456');
-  log(' [STUDENT] rahul.sharma@college.edu    | Student@123456 (High Readiness ~82%)');
-  log(' [STUDENT] priya.patel@college.edu     | Student@123456 (Moderate Readiness ~58%)');
-  log(' [STUDENT] amit.verma@college.edu      | Student@123456 (Beginner Readiness ~28%)');
+  log(' [ADMIN]    admin@careergraph.dev       | Admin@123456');
+  log(' [LECTURER] faculty@college.edu         | Faculty@123456');
+  log(' [INDUSTRY] recruiter@techcorp.com      | Industry@123456');
+  log(' [ALUMNI]   alumni@college.edu          | Alumni@123456');
+  log(' [STUDENT]  rahul.sharma@college.edu    | Student@123456 (High Readiness ~82%)');
+  log(' [STUDENT]  priya.patel@college.edu     | Student@123456 (Moderate Readiness ~58%)');
+  log(' [STUDENT]  amit.verma@college.edu      | Student@123456 (Beginner Readiness ~28%)');
   log('==================================================');
 };
 

@@ -28,11 +28,11 @@ router.post(
 router.put('/:id', protect, updateStudentSkill);
 router.delete('/:id', protect, deleteStudentSkill);
 
-// Admin catalog routes
+// Admin & Lecturer catalog routes
 router.post(
   '/catalog',
   protect,
-  authorize('admin'),
+  authorize('admin', 'lecturer'),
   [
     body('name').trim().notEmpty().withMessage('Skill name is required'),
     body('category').notEmpty().withMessage('Category is required'),
@@ -40,6 +40,6 @@ router.post(
   ],
   createPredefinedSkill
 );
-router.delete('/catalog/:id', protect, authorize('admin'), deletePredefinedSkill);
+router.delete('/catalog/:id', protect, authorize('admin', 'lecturer'), deletePredefinedSkill);
 
 export default router;

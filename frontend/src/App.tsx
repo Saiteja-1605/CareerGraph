@@ -82,7 +82,16 @@ export const AppRoutes: React.FC = () => {
         path="/"
         element={
           isAuthenticated ? (
-            <Navigate to={user?.role === 'admin' ? '/admin' : '/dashboard'} replace />
+            <Navigate
+              to={
+                user?.role === 'admin' || user?.role === 'lecturer'
+                  ? '/admin'
+                  : user?.role === 'industry'
+                  ? '/admin/opportunities'
+                  : '/dashboard'
+              }
+              replace
+            />
           ) : (
             <LandingPage />
           )
@@ -92,7 +101,16 @@ export const AppRoutes: React.FC = () => {
         path="/login"
         element={
           isAuthenticated ? (
-            <Navigate to={user?.role === 'admin' ? '/admin' : '/dashboard'} replace />
+            <Navigate
+              to={
+                user?.role === 'admin' || user?.role === 'lecturer'
+                  ? '/admin'
+                  : user?.role === 'industry'
+                  ? '/admin/opportunities'
+                  : '/dashboard'
+              }
+              replace
+            />
           ) : (
             <LoginPage />
           )
@@ -102,18 +120,27 @@ export const AppRoutes: React.FC = () => {
         path="/register"
         element={
           isAuthenticated ? (
-            <Navigate to={user?.role === 'admin' ? '/admin' : '/dashboard'} replace />
+            <Navigate
+              to={
+                user?.role === 'admin' || user?.role === 'lecturer'
+                  ? '/admin'
+                  : user?.role === 'industry'
+                  ? '/admin/opportunities'
+                  : '/dashboard'
+              }
+              replace
+            />
           ) : (
             <RegisterPage />
           )
         }
       />
 
-      {/* Student Protected Routes */}
+      {/* Student & Alumni Protected Routes */}
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'alumni']}>
             <AuthenticatedLayout>
               <StudentDashboard />
             </AuthenticatedLayout>
@@ -123,7 +150,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/profile"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'admin', 'lecturer', 'alumni', 'industry']}>
             <AuthenticatedLayout>
               <ProfilePage />
             </AuthenticatedLayout>
@@ -133,7 +160,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/skills"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'alumni']}>
             <AuthenticatedLayout>
               <SkillsPage />
             </AuthenticatedLayout>
@@ -143,7 +170,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/dsa"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'alumni']}>
             <AuthenticatedLayout>
               <DsaTrackerPage />
             </AuthenticatedLayout>
@@ -153,7 +180,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/interview-prep"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'alumni']}>
             <AuthenticatedLayout>
               <InterviewPrepPage />
             </AuthenticatedLayout>
@@ -163,7 +190,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/interview-preparation"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'alumni']}>
             <AuthenticatedLayout>
               <InterviewPrepPage />
             </AuthenticatedLayout>
@@ -173,7 +200,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/opportunities"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'admin', 'lecturer', 'alumni', 'industry']}>
             <AuthenticatedLayout>
               <OpportunitiesPage />
             </AuthenticatedLayout>
@@ -183,7 +210,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/opportunities/:id"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'admin', 'lecturer', 'alumni', 'industry']}>
             <AuthenticatedLayout>
               <OpportunityDetailPage />
             </AuthenticatedLayout>
@@ -193,7 +220,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/applications"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'alumni']}>
             <AuthenticatedLayout>
               <ApplicationsPage />
             </AuthenticatedLayout>
@@ -203,7 +230,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/settings"
         element={
-          <ProtectedRoute allowedRole="student">
+          <ProtectedRoute allowedRoles={['student', 'admin', 'lecturer', 'alumni', 'industry']}>
             <AuthenticatedLayout>
               <SettingsPage />
             </AuthenticatedLayout>
@@ -211,11 +238,11 @@ export const AppRoutes: React.FC = () => {
         }
       />
 
-      {/* Admin Protected Routes */}
+      {/* Admin, Faculty, and Industry Protected Routes */}
       <Route
         path="/admin"
         element={
-          <ProtectedRoute allowedRole="admin">
+          <ProtectedRoute allowedRoles={['admin', 'lecturer']}>
             <AuthenticatedLayout>
               <AdminDashboard />
             </AuthenticatedLayout>
@@ -225,7 +252,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/admin/students"
         element={
-          <ProtectedRoute allowedRole="admin">
+          <ProtectedRoute allowedRoles={['admin', 'lecturer', 'industry', 'alumni']}>
             <AuthenticatedLayout>
               <ManageStudentsPage />
             </AuthenticatedLayout>
@@ -235,7 +262,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/admin/opportunities"
         element={
-          <ProtectedRoute allowedRole="admin">
+          <ProtectedRoute allowedRoles={['admin', 'industry']}>
             <AuthenticatedLayout>
               <ManageOpportunitiesPage />
             </AuthenticatedLayout>
@@ -245,7 +272,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/admin/applications"
         element={
-          <ProtectedRoute allowedRole="admin">
+          <ProtectedRoute allowedRoles={['admin', 'lecturer', 'industry']}>
             <AuthenticatedLayout>
               <ManageApplicationsPage />
             </AuthenticatedLayout>
@@ -255,7 +282,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/admin/skills"
         element={
-          <ProtectedRoute allowedRole="admin">
+          <ProtectedRoute allowedRoles={['admin', 'lecturer']}>
             <AuthenticatedLayout>
               <ManageSkillsPage />
             </AuthenticatedLayout>
@@ -265,7 +292,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path="/admin/analytics"
         element={
-          <ProtectedRoute allowedRole="admin">
+          <ProtectedRoute allowedRoles={['admin', 'lecturer']}>
             <AuthenticatedLayout>
               <AnalyticsPage />
             </AuthenticatedLayout>

@@ -10,9 +10,9 @@ import { protect, authorize } from '../middleware/auth';
 
 const router = Router();
 
-// All admin routes require authentication and admin role
+// All admin routes require authentication and appropriate role
 router.use(protect);
-router.use(authorize('admin'));
+router.use(authorize('admin', 'lecturer', 'industry'));
 
 router.get('/dashboard', getAdminDashboard);
 router.get('/students', getStudentsList);

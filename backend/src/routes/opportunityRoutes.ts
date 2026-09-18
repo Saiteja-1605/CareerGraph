@@ -29,11 +29,11 @@ router.get('/:id', (req, res, next) => {
   }
 }, getOpportunityById);
 
-// Admin-only management endpoints
+// Admin and Industry management endpoints
 router.post(
   '/',
   protect,
-  authorize('admin'),
+  authorize('admin', 'industry'),
   [
     body('companyName').trim().notEmpty().withMessage('Company name is required'),
     body('jobTitle').trim().notEmpty().withMessage('Job title is required'),
@@ -47,7 +47,7 @@ router.post(
   createOpportunity
 );
 
-router.put('/:id', protect, authorize('admin'), updateOpportunity);
-router.delete('/:id', protect, authorize('admin'), deleteOpportunity);
+router.put('/:id', protect, authorize('admin', 'industry'), updateOpportunity);
+router.delete('/:id', protect, authorize('admin', 'industry'), deleteOpportunity);
 
 export default router;

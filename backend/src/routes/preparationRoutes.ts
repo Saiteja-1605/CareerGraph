@@ -10,9 +10,9 @@ import { protect, authorize } from '../middleware/auth';
 
 const router = Router();
 
-// All preparation endpoints are student-focused
+// All preparation endpoints are student & alumni focused
 router.use(protect);
-router.use(authorize('student'));
+router.use(authorize('student', 'alumni'));
 
 router.get('/dsa', getDsaProgress);
 router.put('/dsa/:id', updateDsaTopic);

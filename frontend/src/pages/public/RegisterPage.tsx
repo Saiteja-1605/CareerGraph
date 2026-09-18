@@ -32,7 +32,14 @@ export const RegisterPage: React.FC = () => {
     try {
       const res = await register(formData);
       if (res.success) {
-        navigate(res.user.role === 'admin' ? '/admin' : '/dashboard', { replace: true });
+        const r = res.user.role;
+        if (r === 'admin' || r === 'lecturer') {
+          navigate('/admin', { replace: true });
+        } else if (r === 'industry') {
+          navigate('/admin/opportunities', { replace: true });
+        } else {
+          navigate('/dashboard', { replace: true });
+        }
       }
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed. Please check your details.');
@@ -138,7 +145,10 @@ export const RegisterPage: React.FC = () => {
                   className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-slate-900"
                 >
                   <option value="student">Student</option>
-                  <option value="admin">Placement Admin</option>
+                  <option value="lecturer">Lecturer / Faculty Mentor</option>
+                  <option value="industry">Industry / Campus Recruiter</option>
+                  <option value="alumni">Alumni Mentor</option>
+                  <option value="admin">Placement Director / Admin</option>
                 </select>
               </div>
 

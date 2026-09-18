@@ -26,7 +26,14 @@ export const LoginPage: React.FC = () => {
         if (from) {
           navigate(from, { replace: true });
         } else {
-          navigate(res.user.role === 'admin' ? '/admin' : '/dashboard', { replace: true });
+          const r = res.user.role;
+          if (r === 'admin' || r === 'lecturer') {
+            navigate('/admin', { replace: true });
+          } else if (r === 'industry') {
+            navigate('/admin/opportunities', { replace: true });
+          } else {
+            navigate('/dashboard', { replace: true });
+          }
         }
       }
     } catch (err: any) {
@@ -127,7 +134,7 @@ export const LoginPage: React.FC = () => {
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
               Quick One-Click Demo Credentials
             </p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={() => setDemoCredentials('admin@careergraph.dev', 'Admin@123456')}
@@ -135,9 +142,9 @@ export const LoginPage: React.FC = () => {
               >
                 <div className="flex items-center gap-1 font-bold text-indigo-700">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Admin Portal</span>
+                  <span>Admin</span>
                 </div>
-                <div className="text-[11px] text-slate-500 truncate">Placement Officer</div>
+                <div className="text-[11px] text-slate-500 truncate">Placement Director</div>
               </button>
 
               <button
@@ -149,7 +156,43 @@ export const LoginPage: React.FC = () => {
                   <UserCheck className="w-3.5 h-3.5" />
                   <span>Rahul (82%)</span>
                 </div>
-                <div className="text-[11px] text-slate-500 truncate">Placement Ready</div>
+                <div className="text-[11px] text-slate-500 truncate">Student Ready</div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setDemoCredentials('faculty@college.edu', 'Faculty@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+              >
+                <div className="flex items-center gap-1 font-bold text-purple-700">
+                  <UserCheck className="w-3.5 h-3.5" />
+                  <span>Lecturer</span>
+                </div>
+                <div className="text-[11px] text-slate-500 truncate">Faculty Mentor</div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setDemoCredentials('recruiter@techcorp.com', 'Industry@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+              >
+                <div className="flex items-center gap-1 font-bold text-blue-700">
+                  <UserCheck className="w-3.5 h-3.5" />
+                  <span>Industry</span>
+                </div>
+                <div className="text-[11px] text-slate-500 truncate">Campus Recruiter</div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setDemoCredentials('alumni@college.edu', 'Alumni@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+              >
+                <div className="flex items-center gap-1 font-bold text-teal-700">
+                  <UserCheck className="w-3.5 h-3.5" />
+                  <span>Alumni</span>
+                </div>
+                <div className="text-[11px] text-slate-500 truncate">Microsoft SDE-2</div>
               </button>
 
               <button
@@ -161,19 +204,7 @@ export const LoginPage: React.FC = () => {
                   <UserCheck className="w-3.5 h-3.5" />
                   <span>Priya (58%)</span>
                 </div>
-                <div className="text-[11px] text-slate-500 truncate">Competitive</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setDemoCredentials('amit.verma@college.edu', 'Student@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
-              >
-                <div className="flex items-center gap-1 font-bold text-amber-700">
-                  <UserCheck className="w-3.5 h-3.5" />
-                  <span>Amit (28%)</span>
-                </div>
-                <div className="text-[11px] text-slate-500 truncate">Developing</div>
+                <div className="text-[11px] text-slate-500 truncate">Student Dev</div>
               </button>
             </div>
           </div>

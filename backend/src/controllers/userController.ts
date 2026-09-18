@@ -55,10 +55,10 @@ export const updateProfile = async (req: AuthenticatedRequest, res: Response): P
 };
 
 export const getReadinessScore = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  if (!req.user || req.user.role !== 'student') {
+  if (!req.user || (req.user.role !== 'student' && req.user.role !== 'alumni')) {
     res.status(400).json({
       success: false,
-      message: 'Career readiness score is calculated for student profiles.',
+      message: 'Career readiness score is calculated for student and alumni profiles.',
     });
     return;
   }

@@ -47,7 +47,8 @@ export const register = async (req: AuthenticatedRequest, res: Response): Promis
     return;
   }
 
-  const userRole = role === 'admin' ? 'admin' : 'student';
+  const allowedRoles = ['student', 'admin', 'lecturer', 'alumni', 'industry'];
+  const userRole = allowedRoles.includes(role) ? role : 'student';
 
   const user = await User.create({
     name,
@@ -60,7 +61,7 @@ export const register = async (req: AuthenticatedRequest, res: Response): Promis
     phone: phone || '',
   });
 
-  if (user.role === 'student') {
+  if (user.role === 'student' || user.role === 'alumni') {
     await initializeStudentData(user._id);
   }
 
@@ -119,7 +120,7 @@ export const login = async (req: AuthenticatedRequest, res: Response): Promise<v
   }
 
   // Ensure student default data is initialized (useful for legacy / seed accounts)
-  if (user.role === 'student') {
+  if (user.role === 'student' || user.role === 'alumni') {
     await initializeStudentData(user._id);
   }
 
