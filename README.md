@@ -1,265 +1,418 @@
 # CareerGraph 🎓📈
 
-> **A Full-Stack Placement & Skill Management Platform for Engineering Students and College Placement Cells.**
-
-[![Node.js](https://img.shields.io/badge/Node.js-v20+-green.svg?logo=node.js)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-v5+-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18-61dafb.svg?logo=react)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-v6-646CFF.svg?logo=vite)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3.4-38bdf8.svg?logo=tailwind-css)](https://tailwindcss.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248.svg?logo=mongodb)](https://www.mongodb.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> **A modern, full-stack placement readiness and campus recruitment management platform engineered for engineering students, faculty mentors, recruiters, and college placement directorates.**
 
 ---
 
-## 🌟 Executive Summary
+## 🚀 Live Demo
 
-**CareerGraph** is a comprehensive, production-grade placement preparation and management ecosystem built to bridge the gap between college engineering students and on-campus recruitment directorates.
+The production application is deployed and publicly accessible on Render with a managed MongoDB Atlas cloud database:
 
-Unlike generic job portals or superficial trackers, CareerGraph introduces a **transparent, rule-based Career Readiness Score (0–100%)** that evaluates candidate profile completion, technical skill breadth and depth, DSA problem-solving volume across 12 core data structures, CS fundamentals readiness, and active application pipeline velocity.
+### 🔗 **[Open CareerGraph Live Application](https://careergraph-frontend-jqbu.onrender.com)**
 
----
-
-## 🚀 Key Features
-
-### 👨‍🎓 For Students
-- **Smart Career Readiness Score**: Transparent 0–100% calculation weighted across Profile Completion (15%), Technical Skills (20%), DSA Practice (25%), Interview Prep (25%), and Placement Pipeline Activity (15%). Includes actionable recommendations on how to advance between tiers (*Beginning*, *Developing*, *Competitive*, *Placement Ready*).
-- **DSA Preparation Tracker**: Granular milestone tracking across 12 foundational computer science topics (Arrays, Strings, Linked Lists, Stack, Queue, Hashing, Recursion, Sorting, Searching, Trees, Graphs, Dynamic Programming) with Easy, Medium, Hard problem counters and personal notes.
-- **Core CS & Behavioral Interview Prep**: Interactive checklists covering 10 structured disciplines: DSA, OOP, DBMS, Operating Systems, Computer Networks, SQL, Aptitude, HR Questions, STAR Behavioral Answers, and Mock Technical Interviews.
-- **Technical Skills Inventory**: Categorize proficiencies (*Beginner*, *Intermediate*, *Advanced*, *Expert*) across Programming, Frontend, Backend, Database, CS Fundamentals, and Tools & DevOps.
-- **Placement Drives Directory**: Live search, filtering by job type (*Full-time*, *Internship*, *Intern + PPO*), salary packages (CTC), location, and application deadline countdowns.
-- **Application Pipeline Tracker**: Stage-by-stage progression tracker (*Saved*, *Applied*, *Assessment*, *Interview*, *Shortlisted*, *Selected*, *Rejected*) with interview dates and personal progress notes.
-
-### 🛡️ For University Placement Officers & Admins
-- **Placement Directorate Dashboard**: High-level telemetry displaying total candidate enrollment, active drives, total applications, selection rates, average DSA problem-solving count, and interview syllabus coverage.
-- **Recruitment Funnel & Skill Analytics**: Interactive data visualizations featuring pipeline stage conversions (Recharts Bar Charts) and batch skill supply vs. industry demand distributions.
-- **Student Candidate Directory**: Searchable directory with live readiness score badges, profile dossiers, and detailed preparation inspection.
-- **Placement Drive Management**: Full CRUD capabilities to publish, update, and manage on-campus recruitment drives with customizable eligibility criteria, salary brackets, and required skills.
-- **Application Evaluation & Status Updates**: Advance students through test and interview rounds, schedule assessment dates, and log official administrative feedback.
+> **Note:** The live deployment features a pre-seeded production database and a **One-Click Demo Credentials** panel on the sign-in page so recruiters, hiring managers, and evaluators can instantly test all user roles without manual registration.
+>
+> **Live Backend API Health:** [`https://careergraph-backend-ozb8.onrender.com/api/health`](https://careergraph-backend-ozb8.onrender.com/api/health)
 
 ---
 
-## 🛠️ Technology Stack
+## 📌 Overview
 
-| Layer | Technologies |
+Collegiate placement ecosystems frequently suffer from fragmented tooling: students track their DSA practice on spreadsheets, log job applications across disparate portals, and lack clear visibility into their hiring readiness. Simultaneously, campus placement officers struggle with unstandardized student profiles and manual tracking of company recruitment drives.
+
+**CareerGraph** unifies the entire engineering placement lifecycle into a single, cohesive platform. It bridges the gap between campus candidates and placement directorates with:
+
+- **Objective Readiness Evaluation**: An explainable, rule-based Career Readiness Score (0–100%) that measures real engineering competencies instead of subjective self-assessments.
+- **Systematic Preparation Frameworks**: Dedicated, granular trackers for Data Structures & Algorithms (DSA) across 12 CS domains and 10 core interview syllabus modules.
+- **End-to-End Placement Pipeline**: Real-time opportunity board with criteria filtering, stage-by-stage application progression, and cohort recruitment telemetry.
+- **Multi-Stakeholder Collaboration**: Role-tailored workflows for Students, Placement Administrators, Faculty Mentors, Campus Recruiters, and Alumni.
+
+---
+
+## ✨ Key Features
+
+### 🎯 Transparent Career Readiness Engine
+- **Explainable 0–100% Score**: Computed via a deterministic multi-factor scoring model across 5 core pillars:
+  - **Profile Completeness (15%)**: Contact details, degree, resume URL, GitHub, and LinkedIn.
+  - **Technical Skills Matrix (20%)**: Quantity, domain diversity, and advanced/expert depth.
+  - **DSA Problem Solving (25%)**: Solved volume (benchmark 150+), medium/hard ratio, and topic coverage.
+  - **Core CS & Interview Prep (25%)**: Completion percentage across 10 interview disciplines.
+  - **Application Pipeline Velocity (15%)**: Active drives, assessment clearances, and shortlist milestones.
+- **Readiness Tier Classification**: Real-time assignment to *Beginning* (<40%), *Developing* (40–59%), *Competitive* (60–79%), or *Placement Ready* (80–100%).
+- **Automated Recommendations**: Dynamic, personalized tips advising students on their next highest-impact preparation milestone.
+
+### 💻 Data Structures & Algorithms (DSA) Tracker
+- **12 Foundational CS Topics**: Arrays, Strings, Linked Lists, Stacks, Queues, Hashing, Recursion, Sorting, Searching, Trees, Graphs, and Dynamic Programming.
+- **Granular Difficulty Breakdown**: Dedicated counters for Easy, Medium, and Hard solved questions with custom revision notes per topic.
+- **Progress Telemetry**: Live completion percentages against recommended interview problem benchmarks.
+
+### 📚 Structured Interview Preparation
+- **10 Core Preparation Modules**: Interactive syllabus checklists covering:
+  - Data Structures & Algorithms
+  - Object-Oriented Programming (OOP)
+  - Database Management Systems (DBMS)
+  - Operating Systems (OS)
+  - Computer Networks (CN)
+  - SQL & Query Optimization
+  - Quantitative & Logical Aptitude
+  - Standard HR Interview Questions
+  - STAR Framework Behavioral Scenarios
+  - Mock Technical Interview Exercises
+- **Actionable Tracking**: Toggleable topic checklists with instant progress percentage recalculation.
+
+### 🛠️ Technical Skills Inventory
+- **Domain Categorization**: Skills organized across Programming Languages, Frontend, Backend, Databases, CS Fundamentals, and DevOps/Tools.
+- **Proficiency Levels**: Beginner, Intermediate, Advanced, and Expert ratings with visual tags.
+- **Student Profile Dossier**: Comprehensive summary highlighting technical strengths for recruiter evaluation.
+
+### 💼 Campus Placement Drives & Application Pipeline
+- **Recruitment Board**: Searchable campus drives with filtering by job type (*Full-time*, *Internship*, *Intern + PPO*), compensation package (CTC in LPA), location, and application deadlines.
+- **Stage-by-Stage Tracking**: Real-time pipeline progression (*Saved* → *Applied* → *Assessment* → *Interview* → *Shortlisted* → *Selected* → *Rejected*).
+- **Application Logs**: Centralized record of assessment scores, interview dates, and personal candidate notes.
+
+### 📊 Placement Directorate & Admin Telemetry
+- **Directorate Dashboard**: Real-time cohort metrics displaying total student enrollment, active drives, total applications, placement conversion rate, and average DSA problem volume.
+- **Recruitment Funnel Analytics**: Interactive visual charts (powered by Recharts) showing stage conversions from initial application to final offer.
+- **Skill Supply vs. Market Demand**: Batch-wide skill distribution comparisons against open drive prerequisites.
+- **Student Candidate Directory**: Filterable directory with live readiness score badges, profile dossiers, and detailed preparation inspection.
+- **Placement Drive Management**: Full administrative CRUD suite to publish, update, and manage campus drives with custom eligibility criteria.
+- **Master Skills Catalog**: Controlled taxonomy management to add, update, or remove verified platform skills.
+
+---
+
+## 👥 User Roles & Access Control
+
+CareerGraph enforces strict Role-Based Access Control (RBAC) across 5 distinct personas:
+
+| Role | Access & Key Responsibilities |
 | :--- | :--- |
-| **Frontend** | React 18, TypeScript, Vite, React Router v6, Tailwind CSS, Lucide Icons, Recharts, Axios |
-| **Backend** | Node.js, Express.js, TypeScript, ts-node-dev |
-| **Database** | MongoDB & Mongoose *(with auto-fallback to in-memory MongoDB for instant offline demo)* |
-| **Authentication** | JSON Web Tokens (JWT), bcryptjs (Salt rounds: 10), Role-based authorization middleware |
-| **Architecture** | Clean Layered REST Architecture (Controllers, Services, Models, Routes, Middleware) |
+| **Student (`student`)** | Access to personal readiness score, DSA tracker, interview checklists, skills inventory, campus job board, and active application pipeline. |
+| **Placement Admin (`admin`)** | Full oversight of the placement ecosystem: create/manage drives, review cohort student dossiers, update candidate application stages, manage the master skills catalog, and inspect recruitment analytics. |
+| **Faculty Mentor (`lecturer`)** | Academic view to inspect departmental student directories, analyze cohort preparation metrics, and identify curriculum skill gaps against industry requirements. |
+| **Campus Recruiter (`industry`)** | Dedicated corporate view to post placement drives, inspect student applicants, evaluate candidate readiness, and track candidate interview progression. |
+| **Alumni Mentor (`alumni`)** | Access to student preparation resources and student directory to provide mentorship, mock interview guidance, and referrals. |
 
 ---
 
-## 📐 Architecture & System Design
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework:** React 18 (TypeScript)
+- **Build Tool:** Vite 6
+- **Routing:** React Router v6
+- **Styling:** Tailwind CSS v3.4, PostCSS, Autoprefixer
+- **Visualizations & Charts:** Recharts
+- **Iconography:** Lucide React
+- **HTTP Client:** Axios (with Bearer token interceptors)
+
+### Backend
+- **Runtime:** Node.js (v18+)
+- **Framework:** Express.js 4
+- **Language:** TypeScript 5
+- **Database ODM:** Mongoose 8
+- **Validation:** Express-Validator
+- **Development Server:** ts-node-dev (with live reloading)
+
+### Database
+- **Production:** MongoDB Atlas (Cloud-hosted, TLS-encrypted connection)
+- **Local / Offline Fallback:** Embedded in-memory MongoDB (`mongodb-memory-server`) automatically initializes if no local or remote MongoDB instance is detected during development.
+
+### Authentication & Security
+- **Token Auth:** Stateless JSON Web Tokens (`jsonwebtoken`)
+- **Password Protection:** `bcryptjs` hashing with 10 salt rounds
+- **Authorization:** Route-level RBAC middleware (`protect` & `authorize`)
+- **CORS:** Origin whitelisting with credential handling
+- **Sanitization:** Centralized error handling preventing internal stack or database leaks
+
+### Deployment & DevOps
+- **Frontend Hosting:** Render Static Site (with single-page application URL rewrites)
+- **Backend Hosting:** Render Web Service (Node.js runtime with health checks)
+- **Infrastructure Blueprint:** Declarative `render.yaml` infrastructure-as-code
+- **Version Control:** Git & GitHub Monorepo
+
+---
+
+## 🏗️ Architecture
+
+```
+                                  ┌────────────────────────┐
+                                  │   Client Web Browser   │
+                                  │ (Recruiters, Students) │
+                                  └───────────┬────────────┘
+                                              │
+                                              │ HTTPS / JSON
+                                              ▼
+                    ┌──────────────────────────────────────────────────┐
+                    │            Render Static Hosting                 │
+                    │   React 18 SPA + Vite + Tailwind CSS + Recharts   │
+                    └─────────────────────────┬────────────────────────┘
+                                              │
+                                              │ REST API (Axios + JWT Bearer)
+                                              ▼
+                    ┌──────────────────────────────────────────────────┐
+                    │            Render Web Service (Node/Express)     │
+                    │  ┌────────────────────────────────────────────┐  │
+                    │  │ Middleware: CORS, JWT Auth, RBAC, Validator│  │
+                    │  └─────────────────────┬──────────────────────┘  │
+                    │                        ▼                         │
+                    │  ┌────────────────────────────────────────────┐  │
+                    │  │ Controllers & Readiness Calculation Engine │  │
+                    │  └─────────────────────┬──────────────────────┘  │
+                    │                        ▼                         │
+                    │  ┌────────────────────────────────────────────┐  │
+                    │  │ Mongoose ODM Schemas & Models              │  │
+                    │  └────────────────────────────────────────────┘  │
+                    └─────────────────────────┬────────────────────────┘
+                                              │
+                                              │ Mongoose TLS Protocol
+                                              ▼
+                    ┌──────────────────────────────────────────────────┐
+                    │               MongoDB Atlas Cloud                │
+                    │    (Users, Skills, Drives, Applications, etc.)   │
+                    └──────────────────────────────────────────────────┘
+```
+
+```mermaid
+flowchart TD
+    Client["Client Browser (Student / Recruiter / Admin)"]
+    Frontend["React 18 SPA (Vite + Tailwind CSS)\ncareergraph-frontend-jqbu.onrender.com"]
+    API["Express.js REST API (Node.js + TypeScript)\ncareergraph-backend-ozb8.onrender.com"]
+    Auth["JWT Auth & Role-Based Access Control Middleware"]
+    Engine["Rule-Based Readiness Score Engine (0-100%)"]
+    DB[("MongoDB Atlas Cloud Database")]
+
+    Client -->|Loads UI| Frontend
+    Frontend -->|HTTP / REST + Bearer Token| API
+    API -->|Validates Request| Auth
+    Auth -->|Executes Business Logic| Engine
+    Engine -->|Queries & Updates Data| DB
+```
+
+---
+
+## 📂 Project Structure
 
 ```
 CareerGraph/
-├── package.json               # Root orchestrator scripts (dev, build, seed)
-├── .env.example               # Environment variable specification
-├── README.md                  # Comprehensive documentation
+├── package.json               # Root monorepo orchestrator (concurrent dev, build, seed)
+├── render.yaml                # Declarative Render infrastructure-as-code blueprint
+├── .env.example               # Template environment configuration
+├── README.md                  # Project documentation
 ├── backend/
-│   ├── src/
-│   │   ├── config/            # Database connection & ENV configuration
-│   │   ├── models/            # Mongoose Schemas (User, Skill, Opportunity, Application, DsaProgress, InterviewPrep)
-│   │   ├── middleware/        # JWT Authentication, Role Authorization, Input Validation, Error Handling
-│   │   ├── controllers/       # Modular Express route controllers
-│   │   ├── services/          # Transparent Rule-Based Career Readiness Engine
-│   │   ├── routes/            # REST API route endpoints (/api/*)
-│   │   ├── utils/             # Seed data scripts & verification test suite
-│   │   ├── app.ts             # Express application configuration
-│   │   └── server.ts          # Server bootstrap & self-healing auto-seed
-│   └── package.json
+│   ├── package.json           # Backend dependencies & build scripts
+│   ├── tsconfig.json          # TypeScript compiler configuration
+│   └── src/
+│       ├── config/            # MongoDB Atlas connection & environment parsing
+│       ├── controllers/       # Route handlers (auth, users, skills, drives, apps, admin)
+│       ├── middleware/        # JWT verification, RBAC authorization, validation & error handler
+│       ├── models/            # Mongoose schemas (User, Skill, StudentSkill, Opportunity, Application, etc.)
+│       ├── routes/            # Modular Express router endpoints (/api/*)
+│       ├── services/          # Transparent Rule-Based Career Readiness Engine
+│       ├── utils/             # Database seed scripts & pre-populated mock dataset
+│       ├── app.ts             # Express application initialization, CORS & route binding
+│       └── server.ts          # Server bootstrap & port listener
 └── frontend/
-    ├── src/
-    │   ├── assets/            # Static media and SVG icons
-    │   ├── components/        # Reusable UI widgets (ReadinessGauge, StatCard, Badge, Modal, Navbar, Sidebar)
-    │   ├── context/           # AuthContext (JWT persistence, role state, session refresh)
-    │   ├── pages/
-    │   │   ├── public/        # LandingPage, LoginPage, RegisterPage
-    │   │   ├── student/       # StudentDashboard, Profile, Skills, DSA, Interview Prep, Opportunities, Applications
-    │   │   └── admin/         # AdminDashboard, ManageStudents, ManageOpportunities, ManageApplications, Analytics
-    │   ├── services/          # Typed Axios REST API client
-    │   ├── types/             # Shared TypeScript models & interfaces
-    │   ├── App.tsx            # Protected client-side routing
-    │   └── main.tsx           # React DOM bootstrap
-    └── package.json
+    ├── package.json           # Frontend dependencies & build scripts
+    ├── vite.config.ts         # Vite bundler configuration & local API proxying
+    ├── tailwind.config.js     # Tailwind CSS theme configuration
+    ├── index.html             # HTML entry point
+    └── src/
+        ├── assets/            # Static assets & SVG icons
+        ├── components/        # Reusable UI widgets (ReadinessGauge, StatCard, Badge, Modal, Navbar, Sidebar)
+        ├── context/           # AuthContext (JWT persistence, user state, session handling)
+        ├── pages/
+        │   ├── public/        # LandingPage, LoginPage, RegisterPage
+        │   ├── student/       # Dashboard, Profile, Skills, DSA Tracker, Interview Prep, Drives, Applications
+        │   └── admin/         # Directorate Dashboard, ManageStudents, ManageOpportunities, ManageApplications, Analytics
+        ├── services/          # Typed Axios REST API client
+        ├── types/             # Shared TypeScript models and interfaces
+        ├── App.tsx            # Protected client-side routing & role guards
+        └── main.tsx           # React DOM root entry
 ```
 
 ---
 
-## 🔐 Authentication & Security Features
+## 🔐 Authentication & Security
 
-- **Passwords**: Never stored in plain text; salted and hashed with `bcryptjs`.
-- **Stateless Tokens**: Signed JWT tokens verifying role privileges (`student` vs. `admin`).
-- **Route Protection**: Backend endpoints strictly guarded with `protect` and `authorize('admin')` middleware; frontend guarded with `<ProtectedRoute allowedRole="...">`.
-- **CORS & Input Validation**: Explicit CORS origins and `express-validator` schema validation on all mutation endpoints.
-- **Safe Secrets Handling**: No secrets committed to git; template variables provided in `.env.example`.
-- **Graceful Error Sanitization**: Centralized error middleware prevents database error internals or call stacks from leaking to clients in production.
-
----
-
-## 🎯 Rule-Based Career Readiness Score Algorithm
-
-Unlike ambiguous "AI scores", CareerGraph calculates an objective, explainable score out of 100 points:
-
-$$\text{Readiness Score} = \text{Profile} (15) + \text{Skills} (20) + \text{DSA} (25) + \text{Interview Prep} (25) + \text{Applications} (15)$$
-
-1. **Profile Completeness (Max 15 pts)**: Contact details, college, major, resume URL, GitHub repository, and LinkedIn profile.
-2. **Technical Skills (Max 20 pts)**: Points awarded for skill volume (up to 8 verified skills), domain diversity across categories, and proficiency weighting (*Advanced/Expert* multiplier).
-3. **DSA Mastery (Max 25 pts)**: Solved problem volume (benchmark 150+ problems), difficulty weighting (Medium/Hard problem ratio), and breadth across 12 algorithmic topics.
-4. **Interview Syllabus Coverage (Max 25 pts)**: Completion ratio across the 10 Core CS and behavioral checklist modules.
-5. **Application Velocity (Max 15 pts)**: Active recruitment drives applied to, assessments cleared, and interview shortlists achieved.
+- **Salted Password Hashing:** User passwords are encrypted with `bcryptjs` using 10 salt rounds and excluded from Mongoose query projections by default (`select: false`).
+- **Stateless Bearer Tokens:** Authentication utilizes JSON Web Tokens (`JWT`) carrying user ID and role claims, attached via Axios request interceptors as `Authorization: Bearer <token>`.
+- **Dual-Layer Route Protection:**
+  - *Backend:* Middleware (`protect`) validates token signatures, and `authorize(...roles)` enforces endpoint permissions.
+  - *Frontend:* Client-side `<ProtectedRoute allowedRoles={[...]}>` components prevent unauthorized page views and redirect unauthenticated users to `/login`.
+- **Input Validation:** Incoming request bodies are validated using `express-validator` rules before reaching controller business logic.
+- **Origin-Whitelisted CORS:** Backend restricts CORS to authorized Render production domains, Vercel domains, and local development origins.
+- **Zero Committed Secrets:** All sensitive credentials, database connection strings, and JWT keys are isolated in environment variables.
 
 ---
 
-## ⚡ Quick Start & Installation
+## 🧪 Demo Accounts
+
+The project includes pre-seeded demonstration accounts tailored for immediate evaluation:
+
+| Role | Email | Demo Password | Persona & Scope |
+| :--- | :--- | :--- | :--- |
+| **Placement Admin** | `admin@careergraph.dev` | `Admin@123456` | Placement Directorate Head • Full admin access |
+| **Student (Placement Ready)** | `rahul.sharma@college.edu` | `Student@123456` | Final year CS • **82% Readiness** • 165 DSA Solved • 4 Applications |
+| **Student (Competitive)** | `priya.patel@college.edu` | `Student@123456` | IT Major • **58% Readiness** • Full Stack • 3 Applications |
+| **Student (Developing)** | `amit.verma@college.edu` | `Student@123456` | ECE Major • **28% Readiness** • Beginner DSA • 1 Application |
+| **Faculty Mentor** | `faculty@college.edu` | `Faculty@123456` | Associate Professor • Departmental student readiness review |
+| **Campus Recruiter** | `recruiter@techcorp.com` | `Industry@123456` | TechCorp Talent Acquisition • Drive creation & applicant tracking |
+| **Alumni Mentor** | `alumni@college.edu` | `Alumni@123456` | Microsoft SDE-2 • Mentorship and student directory access |
+
+> 💡 **Quick Sign-In:** On the [Sign In Page](https://careergraph-frontend-jqbu.onrender.com/login), click any button under **"Quick One-Click Demo Credentials"** to populate and submit credentials automatically.
+
+---
+
+## 🖥️ Live Application & Exploration
+
+Rather than relying on static screenshots, recruiters and evaluators can explore the live, fully interactive deployed application:
+
+👉 **[Launch CareerGraph Live Application](https://careergraph-frontend-jqbu.onrender.com)**
+
+### Recommended Exploration Paths:
+1. **As a Student:** Log in with `rahul.sharma@college.edu` → Inspect the **82% Readiness Gauge** → Explore the **DSA Tracker** with 12 algorithmic topics → View the **Interview Prep** checklist → Check the **Applications** pipeline.
+2. **As an Admin:** Log in with `admin@careergraph.dev` → Explore the **Directorate Dashboard** metrics → Review the **Student Directory** with live readiness scores → View **Recruitment Analytics & Funnel Charts** → Manage **Campus Placement Drives**.
+3. **As a Recruiter:** Log in with `recruiter@techcorp.com` → Browse the campus drives and inspect student applications.
+
+---
+
+## ⚙️ Installation & Local Development
 
 ### Prerequisites
-- **Node.js**: v18.0.0 or higher (`node -v`)
-- **npm**: v9.0.0 or higher (`npm -v`)
-- *(Optional)* **MongoDB**: Local MongoDB daemon or MongoDB Atlas connection string. If MongoDB is not installed locally, CareerGraph automatically boots an embedded in-memory MongoDB in development mode!
+- **Node.js:** v18.0.0 or higher (`node -v`)
+- **npm:** v9.0.0 or higher (`npm -v`)
+- *(Optional)* **MongoDB:** A local MongoDB instance or MongoDB Atlas URI. *(If no MongoDB instance is running locally, CareerGraph automatically falls back to an embedded in-memory MongoDB in development mode!)*
 
-### 1. Clone & Install Dependencies
-
+### 1. Clone the Repository
 ```bash
-# Clone repository
-git clone https://github.com/your-username/CareerGraph.git
+git clone https://github.com/Saiteja-1605/CareerGraph.git
 cd CareerGraph
+```
 
-# Install root, backend, and frontend dependencies
+### 2. Install Dependencies
+Install root, backend, and frontend packages simultaneously:
+```bash
 npm run install:all
 ```
 
-### 2. Configure Environment Variables
-
+### 3. Configure Environment Variables
+Copy the example environment configuration into the backend directory:
 ```bash
-# Copy example configuration for backend
-cp backend/.env.example backend/.env
+# Windows PowerShell
+Copy-Item .env.example backend/.env
+
+# Linux / macOS
+cp .env.example backend/.env
 ```
 
-Default `.env` configuration:
-```env
-PORT=5000
-NODE_ENV=development
-MONGO_URI=mongodb://127.0.0.1:27017/careergraph
-JWT_SECRET=super_secret_jwt_key_careergraph_change_in_production
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-```
-
-### 3. Seed Demonstration Data
-
-Populate the platform with demo accounts, master skill catalogs, 8 placement postings, and student records:
-
+### 4. Seed Demonstration Data
+Populate your local database with demo accounts, the master skills catalog, 8 campus recruitment postings, and student application histories:
 ```bash
 npm run seed
 ```
 
-### 4. Start the Application
-
-You can run both backend and frontend concurrently with a single command:
-
+### 5. Start Development Servers
+Run both backend and frontend concurrently with a single command:
 ```bash
 npm run dev
 ```
 
-- **Frontend Application**: `http://localhost:5173`
-- **Backend REST API**: `http://localhost:5000`
-- **Health Check API**: `http://localhost:5000/api/health`
+- **Frontend Client:** `http://localhost:5173`
+- **Backend REST API:** `http://localhost:5000`
+- **Health Check:** `http://localhost:5000/api/health`
+
+*(Note: The Vite frontend development server includes an automated proxy for `/api` pointing directly to `http://localhost:5000`)*
 
 ---
 
-## 🔑 Demo Login Credentials
+## 🌐 Deployment Architecture
 
-The seed script automatically provisions pre-configured accounts:
+CareerGraph is architected for seamless cloud deployment on **Render** using the included `render.yaml` specification:
 
-| Role | Email | Password | Profile Description |
-| :--- | :--- | :--- | :--- |
-| **Placement Admin** | `admin@careergraph.dev` | `Admin@123456` | University Placement Directorate Head |
-| **Student (Ready)** | `rahul.sharma@college.edu` | `Student@123456` | Final year CS • **82% Readiness** • 165 DSA Solved • 4 Drives |
-| **Student (Competitive)**| `priya.patel@college.edu` | `Student@123456` | IT Major • **58% Readiness** • Full Stack • 3 Drives |
-| **Student (Developing)** | `amit.verma@college.edu` | `Student@123456` | ECE Major • **28% Readiness** • Starting DSA |
+```yaml
+services:
+  # Backend REST API Web Service
+  - type: web
+    name: careergraph-backend
+    runtime: node
+    plan: free
+    buildCommand: npm run install:all && npm run build
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/health
 
-*(Note: The login page includes a **One-Click Demo Credentials** panel for rapid evaluation during interviews)*
+  # Frontend Single-Page Static Site
+  - type: web
+    name: careergraph-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install --include=dev && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+```
 
----
-
-## 📡 REST API Reference
-
-### Authentication & User
-- `POST /api/auth/register` — Register a new student or placement administrator
-- `POST /api/auth/login` — Authenticate and receive JWT Bearer token
-- `GET /api/auth/me` — Retrieve current authenticated session user
-- `PUT /api/auth/update-password` — Change password
-- `GET /api/users/profile` — Fetch student profile details
-- `PUT /api/users/profile` — Update student profile
-- `GET /api/users/readiness` — Calculate live career readiness score & recommendations
-- `GET /api/users/dashboard` — Aggregated student dashboard metrics
-
-### Skills Management
-- `GET /api/skills/catalog` — Get master platform skills catalog
-- `GET /api/skills` — Get current student's added skills
-- `POST /api/skills` — Add skill to student profile
-- `PUT /api/skills/:id` — Update skill proficiency or category
-- `DELETE /api/skills/:id` — Delete skill from profile
-- `POST /api/skills/catalog` — *(Admin)* Add skill to master catalog
-- `DELETE /api/skills/catalog/:id` — *(Admin)* Delete skill from catalog
-
-### Placement Opportunities
-- `GET /api/opportunities` — Browse drives with search, filters (jobType, location, sort)
-- `GET /api/opportunities/:id` — Retrieve detailed opportunity and applicant status
-- `POST /api/opportunities` — *(Admin)* Create a new placement drive
-- `PUT /api/opportunities/:id` — *(Admin)* Update opportunity
-- `DELETE /api/opportunities/:id` — *(Admin)* Remove opportunity & linked applications
-
-### Applications Pipeline
-- `GET /api/applications` — Get student applications with status filtering
-- `POST /api/applications` — Track or save an opportunity
-- `PUT /api/applications/:id` — Update stage (`Applied`, `Assessment`, `Interview`, `Shortlisted`, `Selected`, `Rejected`)
-- `DELETE /api/applications/:id` — Remove application record
-
-### Preparation Trackers
-- `GET /api/preparation/dsa` — Get 12 DSA topics with Easy/Med/Hard breakdown
-- `PUT /api/preparation/dsa/:id` — Update topic solved problem counts
-- `GET /api/preparation/interview` — Get 10 interview preparation checklist modules
-- `POST /api/preparation/interview/:id/toggle` — Toggle checklist completion item
-
-### Admin & Placement Directorate
-- `GET /api/admin/dashboard` — Directorate high-level analytics & metrics
-- `GET /api/admin/students` — Cohort directory with readiness scores
-- `GET /api/admin/students/:id` — Complete candidate performance dossier
-- `GET /api/admin/applications` — All student applications across companies
-- `GET /api/admin/analytics` — Cohort readiness score distribution & funnel charts
+- **Frontend (Static Site):** `https://careergraph-frontend-jqbu.onrender.com`
+- **Backend (Web Service):** `https://careergraph-backend-ozb8.onrender.com`
+- **Database:** MongoDB Atlas M0 cluster connected over TLS.
 
 ---
 
-## 📸 Screenshots & UI Preview
+## 🔑 Environment Variables
 
-| Student Dashboard | Career Readiness Gauge |
-| :---: | :---: |
-| *Personalized welcome, key performance indicators, deadlines* | *Objective score breakdown across 5 weighted domains* |
+### Backend Configuration (`backend/.env`)
 
-| DSA Problem Tracker | Interview Preparation Checklists |
-| :---: | :---: |
-| *12 Data structure topics with Easy/Med/Hard counters* | *Core CS fundamentals & behavioral questions* |
+| Variable | Description | Example / Default |
+| :--- | :--- | :--- |
+| `PORT` | Server listening port | `5000` |
+| `NODE_ENV` | Runtime environment mode | `development` or `production` |
+| `MONGO_URI` | MongoDB connection string (Local or MongoDB Atlas) | `mongodb://127.0.0.1:27017/careergraph` |
+| `JWT_SECRET` | Secret key used to sign and verify JWT auth tokens | `your_secure_jwt_secret_key` |
+| `JWT_EXPIRES_IN`| Lifespan of generated JWT tokens | `7d` |
+| `CLIENT_URL` | Allowed frontend origin for CORS policies | `http://localhost:5173` |
 
-| Placement Board | Admin Analytics & Funnel |
-| :---: | :---: |
-| *Campus recruitment listings with skill matching* | *Cohort intelligence, stage conversion rates, and skills demand* |
+### Frontend Configuration (`frontend/.env`)
+
+| Variable | Description | Example / Default |
+| :--- | :--- | :--- |
+| `VITE_API_URL` | Target backend REST API URL | `http://localhost:5000/api` (Local) / Render Backend URL (Prod) |
+
+*(Note: In local development, leaving `VITE_API_URL` empty defaults to Vite's local `/api` proxy)*
 
 ---
 
-## 🔮 Future Enhancements
-- Automated resume ATS compatibility score scanner
-- Peer-to-peer mock technical interview scheduling calendar
-- Push notification webhooks for placement drive deadlines
-- College-wide leaderboards for DSA problem-solving streaks
+## 🧪 Testing & Build Verification
+
+- **Production Build Validation:**
+  ```bash
+  npm run build
+  ```
+  Runs `rimraf dist && tsc` on the backend and `tsc && vite build` on the frontend. Both compile cleanly with zero TypeScript errors.
+- **REST API Health Check:**
+  ```bash
+  curl -I https://careergraph-backend-ozb8.onrender.com/api/health
+  # HTTP/1.1 200 OK
+  ```
 
 ---
 
-## 👨‍💻 Author & License
+## 📈 Future Improvements
 
-Developed as a full-stack software engineering portfolio project for placement demonstrations.
+- **AI Resume ATS Compatibility Scanner:** Semantic matching between student resumes and placement job descriptions.
+- **Automated Deadline Notifications:** Email and web-push alerts for upcoming placement drive deadlines and interview schedules.
+- **Coding Platform Synchronization:** Direct OAuth integration with LeetCode, Codeforces, and GitHub profiles to sync solved question counts automatically.
+- **Peer-to-Peer Mock Interviews:** Built-in video and collaborative code editor for student peer interview practice.
 
-- **License**: MIT
+---
+
+## 👨‍💻 Author
+
+**Saiteja**
+- GitHub: [@Saiteja-1605](https://github.com/Saiteja-1605)
+- Project Repository: [Saiteja-1605/CareerGraph](https://github.com/Saiteja-1605/CareerGraph)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
