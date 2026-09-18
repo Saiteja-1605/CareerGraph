@@ -8,6 +8,12 @@ import { ENV } from './config/env';
 
 const app: Application = express();
 
+const allowedOrigins = [
+  'https://careergraph-frontend-jqbu.onrender.com',
+  'https://careergraph-backend-ozb8.onrender.com',
+  ENV.CLIENT_URL,
+].filter(Boolean);
+
 // Security and CORS middleware
 app.use(
   cors({
@@ -15,16 +21,15 @@ app.use(
       // Allow requests with no origin (mobile apps, curl, postman) or matching client/cloud domains
       if (
         !origin ||
-        origin === ENV.CLIENT_URL ||
+        allowedOrigins.includes(origin) ||
         origin.includes('localhost') ||
         origin.includes('127.0.0.1') ||
-        origin.endsWith('.vercel.app') ||
         origin.endsWith('.onrender.com') ||
-        origin.endsWith('.netlify.app')
+        origin.endsWith('.vercel.app')
       ) {
         callback(null, true);
       } else {
-        callback(null, true); // Permissive for preview deployments
+        callback(new Error(`CORS policy blocked access from origin: ${origin}`));
       }
     },
     credentials: true,

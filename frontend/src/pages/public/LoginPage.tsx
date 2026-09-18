@@ -37,7 +37,13 @@ export const LoginPage: React.FC = () => {
         }
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to sign in. Please verify your credentials.');
+      const msg =
+        err.response?.data?.message ||
+        (err.message === 'Network Error'
+          ? 'Cannot connect to backend server. Please check your internet connection or verify the backend service status.'
+          : err.message) ||
+        'Failed to sign in. Please verify your credentials.';
+      setError(msg);
     } finally {
       setIsSubmitting(false);
     }

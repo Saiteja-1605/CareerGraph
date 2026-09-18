@@ -2,9 +2,20 @@ import axios from 'axios';
 
 const getBaseUrl = (): string => {
   let envUrl = (import.meta.env.VITE_API_URL || '').trim();
-  if (!envUrl || envUrl === '/api') return '/api';
 
-  // If a host was provided without protocol (e.g. careergraph-backend.onrender.com)
+  // If running in browser on deployed Render static site and envUrl is empty
+  if (!envUrl || envUrl === '/api') {
+    if (
+      typeof window !== 'undefined' &&
+      window.location &&
+      window.location.hostname.includes('onrender.com')
+    ) {
+      return 'https://careergraph-backend-ozb8.onrender.com/api';
+    }
+    return '/api';
+  }
+
+  // If a host was provided without protocol (e.g. careergraph-backend-ozb8.onrender.com)
   if (!envUrl.startsWith('http://') && !envUrl.startsWith('https://') && !envUrl.startsWith('/')) {
     envUrl = `https://${envUrl}`;
   }

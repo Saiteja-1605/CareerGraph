@@ -42,7 +42,13 @@ export const RegisterPage: React.FC = () => {
         }
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed. Please check your details.');
+      const msg =
+        err.response?.data?.message ||
+        (err.message === 'Network Error'
+          ? 'Cannot connect to backend server. Please check your internet connection or verify the backend service status.'
+          : err.message) ||
+        'Registration failed. Please check your details.';
+      setError(msg);
     } finally {
       setIsSubmitting(false);
     }

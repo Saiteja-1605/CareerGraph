@@ -16,7 +16,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_URL
-        sync: false
+        value: https://careergraph-frontend-jqbu.onrender.com
 
   # CareerGraph Frontend Static Site
   - type: web
@@ -30,7 +30,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: careergraph-backend
-          property: host
+        value: https://careergraph-backend-ozb8.onrender.com
