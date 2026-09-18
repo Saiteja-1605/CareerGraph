@@ -5,6 +5,7 @@ services:
     runtime: node
     plan: free
     region: oregon
+    autoDeploy: true
     buildCommand: npm run install:all && npm run build
     startCommand: cd backend && npm start
     healthCheckPath: /api/health
@@ -22,6 +23,7 @@ services:
   - type: web
     name: careergraph-frontend
     runtime: static
+    autoDeploy: true
     buildCommand: cd frontend && npm install --include=dev && npm run build
     staticPublishPath: frontend/dist
     routes:
