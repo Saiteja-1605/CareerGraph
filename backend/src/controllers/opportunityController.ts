@@ -29,8 +29,8 @@ export const getAllOpportunities = async (req: AuthenticatedRequest, res: Respon
 
   if (status && status !== 'All') {
     query.status = status;
-  } else if (!req.user || req.user.role !== 'admin') {
-    // By default, students see Active & Upcoming opportunities
+  } else if (!req.user || (req.user.role !== 'admin' && req.user.role !== 'industry' && req.user.role !== 'lecturer')) {
+    // By default, students and unauthenticated users see Active & Upcoming opportunities
     query.status = { $in: ['Active', 'Upcoming'] };
   }
 

@@ -49,10 +49,39 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const setDemoCredentials = (demoEmail: string, demoPass: string) => {
+  const handleDemoLogin = async (demoEmail: string, demoPass: string) => {
     setEmail(demoEmail);
     setPassword(demoPass);
     setError(null);
+    setIsSubmitting(true);
+
+    try {
+      const res = await login({ email: demoEmail, password: demoPass });
+      if (res.success) {
+        if (from) {
+          navigate(from, { replace: true });
+        } else {
+          const r = res.user.role;
+          if (r === 'admin' || r === 'lecturer') {
+            navigate('/admin', { replace: true });
+          } else if (r === 'industry') {
+            navigate('/admin/opportunities', { replace: true });
+          } else {
+            navigate('/dashboard', { replace: true });
+          }
+        }
+      }
+    } catch (err: any) {
+      const msg =
+        err.response?.data?.message ||
+        (err.message === 'Network Error'
+          ? 'Cannot connect to backend server. Please check your internet connection or verify the backend service status.'
+          : err.message) ||
+        'Failed to sign in. Please verify your credentials.';
+      setError(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -143,8 +172,9 @@ export const LoginPage: React.FC = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <button
                 type="button"
-                onClick={() => setDemoCredentials('admin@careergraph.dev', 'Admin@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+                disabled={isSubmitting}
+                onClick={() => handleDemoLogin('admin@careergraph.dev', 'Admin@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs disabled:opacity-50"
               >
                 <div className="flex items-center gap-1 font-bold text-indigo-700">
                   <ShieldCheck className="w-3.5 h-3.5" />
@@ -155,8 +185,9 @@ export const LoginPage: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setDemoCredentials('rahul.sharma@college.edu', 'Student@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+                disabled={isSubmitting}
+                onClick={() => handleDemoLogin('rahul.sharma@college.edu', 'Student@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs disabled:opacity-50"
               >
                 <div className="flex items-center gap-1 font-bold text-emerald-700">
                   <UserCheck className="w-3.5 h-3.5" />
@@ -167,8 +198,9 @@ export const LoginPage: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setDemoCredentials('faculty@college.edu', 'Faculty@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+                disabled={isSubmitting}
+                onClick={() => handleDemoLogin('faculty@college.edu', 'Faculty@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs disabled:opacity-50"
               >
                 <div className="flex items-center gap-1 font-bold text-purple-700">
                   <UserCheck className="w-3.5 h-3.5" />
@@ -179,8 +211,9 @@ export const LoginPage: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setDemoCredentials('recruiter@techcorp.com', 'Industry@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+                disabled={isSubmitting}
+                onClick={() => handleDemoLogin('recruiter@techcorp.com', 'Industry@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs disabled:opacity-50"
               >
                 <div className="flex items-center gap-1 font-bold text-blue-700">
                   <UserCheck className="w-3.5 h-3.5" />
@@ -191,8 +224,9 @@ export const LoginPage: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setDemoCredentials('alumni@college.edu', 'Alumni@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+                disabled={isSubmitting}
+                onClick={() => handleDemoLogin('alumni@college.edu', 'Alumni@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs disabled:opacity-50"
               >
                 <div className="flex items-center gap-1 font-bold text-teal-700">
                   <UserCheck className="w-3.5 h-3.5" />
@@ -203,8 +237,9 @@ export const LoginPage: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setDemoCredentials('priya.patel@college.edu', 'Student@123456')}
-                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs"
+                disabled={isSubmitting}
+                onClick={() => handleDemoLogin('priya.patel@college.edu', 'Student@123456')}
+                className="p-2 text-left rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-xs disabled:opacity-50"
               >
                 <div className="flex items-center gap-1 font-bold text-sky-700">
                   <UserCheck className="w-3.5 h-3.5" />
